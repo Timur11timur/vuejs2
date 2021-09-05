@@ -1,7 +1,11 @@
 <template>
   <div>
     <ul>
-      <TodoItem />
+      <TodoItem
+      v-for="todo in todos"
+      v-bind:todo="todo"
+      v-on:remove-todo="removeTodo"
+      />
     </ul>
   </div>
 </template>
@@ -10,8 +14,22 @@
 import TodoItem from '@/components/TodoItem'
 
 export default {
+  props: ['todos'],
   components: {
     TodoItem
+  },
+  methods: {
+    removeTodo(id) {
+      console.log(id);
+    }
   }
 }
 </script>
+
+<style scoped>
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>
